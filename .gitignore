@@ -1,0 +1,25 @@
+# Credenciales y configuración local: NUNCA al repositorio
+.env
+*.env.local
+grafana.ini
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Bitácoras locales del ETL programado
+logs/
+*.log
+
+# Power BI Project (.pbip): caché y configuración local
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf
+
+# Sistema operativo / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
