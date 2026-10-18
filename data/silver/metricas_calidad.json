@@ -1,0 +1,14 @@
+{
+  "bronze_archivo": "data/bronze/telemetria.csv",
+  "bronze_sha256": "8b9302b2e4a7e99e0c7973fdae55eb4df0a915d8bfc3ff43a25608696249dce5",
+  "contrato_version": "1.0.0",
+  "filas_leidas": 887,
+  "rechazos": {
+    "R1_faltante": 14,
+    "R2_formato": 0,
+    "R3_duplicado": 23,
+    "R4_rango": 13
+  },
+  "filas_validas": 837,
+  "pct_datos_validos": 94.36
+}
