@@ -1,0 +1,32 @@
+// SolarBI Pascual | Grupo 01 | Medidas DAX
+// Crear en la tabla fact_energia_dia: Modelado > Nueva medida (una por una).
+// Las cifras de la página salen de estas medidas, NO de columnas arrastradas.
+
+// 1) Tarjeta: energía total del periodo filtrado
+Energia Total kWh =
+SUM ( fact_energia_dia[energia_kwh] )
+// Formato: número decimal, 2 decimales.  Valor esperado (5-7 oct): 78,07 kWh
+
+// 2) Gráfico de líneas: la misma medida evaluada por cada fecha del eje
+//    (eje X = dim_fecha[fecha], valores = [Energia Total kWh])
+
+// 3) Tarjeta: porcentaje de datos válidos = lecturas válidas / lecturas esperadas (288 por día)
+Lecturas Validas =
+SUM ( fact_energia_dia[lecturas_validas] )
+
+Lecturas Esperadas =
+COUNTROWS ( fact_energia_dia ) * 288
+
+% Datos Validos =
+DIVIDE ( [Lecturas Validas], [Lecturas Esperadas] )
+// Formato: Porcentaje, 2 decimales.  Valor esperado (5-7 oct): 96,88 %  (837 / 864)
+
+// 4) Extras útiles para el cuadro de mando final
+Energia Promedio Diaria kWh =
+AVERAGEX ( VALUES ( dim_fecha[fecha] ), [Energia Total kWh] )
+
+Yield kWh por kWp =
+DIVIDE ( [Energia Total kWh], MAX ( dim_dispositivo[potencia_kwp] ) )
+
+Cumple Meta Calidad =
+IF ( [% Datos Validos] >= 0.95, "Cumple meta (≥ 95 %)", "No cumple meta" )
