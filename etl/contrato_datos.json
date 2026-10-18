@@ -1,0 +1,22 @@
+{
+  "nombre": "Telemetría del inversor SolarBI Pascual",
+  "version": "1.0.0",
+  "descripcion": "Contrato de datos entre la fuente (inversor simulado) y el flujo ETL. Ver respuesta G3 de la Parte A.",
+  "responsables": {
+    "data_owner": "Product owner del proyecto",
+    "data_steward": "Data modeler / BI analyst",
+    "data_custodian": "Data engineer (mantiene el ETL y PostgreSQL)"
+  },
+  "frecuencia_minutos": 5,
+  "lecturas_esperadas_por_dia": 288,
+  "zona_horaria": "America/Bogota",
+  "campos": [
+    {"nombre": "ts", "tipo": "timestamp", "unidad": "hora local", "obligatorio": true},
+    {"nombre": "dispositivo_id", "tipo": "entero", "unidad": "n/a", "obligatorio": true},
+    {"nombre": "p_ac_kw", "tipo": "decimal", "unidad": "kW", "obligatorio": true, "min": 0, "max": 5},
+    {"nombre": "irradiancia_wm2", "tipo": "decimal", "unidad": "W/m2", "obligatorio": true, "min": 0, "max": 1200},
+    {"nombre": "temp_modulo_c", "tipo": "decimal", "unidad": "°C", "obligatorio": true, "min": -10, "max": 90}
+  ],
+  "meta_calidad_pct_diaria": 95,
+  "politica_de_cambios": "Cualquier cambio de campo, tipo o unidad se avisa antes y se publica como nueva versión del contrato. Si el esquema no coincide, el ETL se detiene y no carga nada."
+}
